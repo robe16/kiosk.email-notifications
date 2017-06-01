@@ -1,6 +1,8 @@
 # kiosk.grandparent-message-board
 
-A mini project to create a 'kiosk' for a relative to display key information during the day. Terminal will be a Raspberry Pi powered screen with Chromium browser auto-open in kiosk mode.
+A mini project to create a 'kiosk' for a relative to display key information during the day.
+
+The terminal will be a Raspberry Pi powered screen with Chromium browser auto-open in kiosk mode. Python code will also auto-run and listen on port 8080 for the Chromium browser to connect to.
 
 I aim for the information and messages to be 'dementia friendly' (research to be undertaken regarding this).
 
