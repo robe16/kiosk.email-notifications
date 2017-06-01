@@ -1,4 +1,5 @@
 email_creds.*
+email_safelist.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
