@@ -36,10 +36,24 @@ class carerVisit():
     def is_future(self):
         return self._start > datetime.now()
 
+    def label(self):
+        return '{when} is {name}'.format(when=self.when(),
+                                         name=self._name)
+
     def when(self):
         if self.is_current():
-            return 'current'
+            return 'Your current carer'
         elif self.is_future():
-            return 'next'
+            #
+            if self._start.time() < datetime.strptime('12:00', '%H:%M').time():
+                morning_afternoon = 'morning'
+            else:
+                morning_afternoon = 'afternoon'
+            #
+            if self._start.date() > datetime.now().date():
+                return 'Your carer tomorrow {morning_afternoon}'.format(morning_afternoon=morning_afternoon)
+            else:
+                return 'Your carer this {morning_afternoon}'.format(morning_afternoon=morning_afternoon)
+            #
         else:
-            return False
+            raise Exception

@@ -11,12 +11,7 @@ def carer_string():
             update_cache()
             carer = carerFind(cache.carers)
         #
-        s = 'Your {when} carer is {name}'.format(when=carer.when(),
-                                                 name=carer.name())
-        #
-        # s += ' {start}-{end}'.format(start=carer.start_string_time(), end=carer.end_string_time())
-        #
-        return s
+        return carer.label()
         #
     except Exception as e:
         print('ERROR: {error}'.format(error=e))
