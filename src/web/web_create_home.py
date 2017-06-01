@@ -1,11 +1,10 @@
 from urllib import urlopen
 from src.config import cfg
+from src.axiscare.carer import carerString
 
 
 def create_home():
-    args = {'code': '---',
-            'desc': 'Unknown',
-            'mesg': 'An error has been encountered, please try again!!'}
+    args = {'carer_msg': carerString()}
     #
     body = urlopen('html/index.html').read().encode('utf-8').format(**args)
     #

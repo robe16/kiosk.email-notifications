@@ -1,0 +1,9 @@
+// Rename to 'axiscare_urls.json' in production
+{
+  "urls": {
+    "0": {
+      "dateReceived": "2017-06-01",
+      "url": "https://1000.axiscare.com/?ml.php&k=ddes6g4267360r4"
+    }
+  }
+}
