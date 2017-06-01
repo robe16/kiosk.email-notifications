@@ -1,6 +1,7 @@
 email_creds.*
 email_safelist.*
-axiscare_urls.*
+axiscare_urls.json
+axiscare_cache.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

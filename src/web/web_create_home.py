@@ -1,6 +1,6 @@
 from urllib import urlopen
 from src.config import cfg
-from src.axiscare.carer import carerString
+from src.axiscare.cache import carerString
 
 
 def create_home():

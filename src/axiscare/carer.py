@@ -1,25 +1,45 @@
-from src.axiscare.data import getData
-from src.axiscare.parse import getCarerNext
-from src.axiscare.url import get_url
+from datetime import datetime
 
 
-def carerString():
-    #
-    try:
+class carerVisit():
+
+    def __init__(self, name, start, end):
         #
-        url = get_url()
-        #
-        data = getData(url)
-        #
-        carerDetails = getCarerNext(data)
-        #
-        # {'when': 'now', 'name': c['name'], 'start': c['start'], 'end': c['end']}
-        #
-        s = 'Your {when} carer is {name}'.format(when=carerDetails['when'],
-                                                 name=carerDetails['name'])
-        #
-        return s
-        #
-    except Exception as e:
-        print('ERROR: {error}'.format(error=e))
-        raise Exception
+        self._name = name
+        self._start = start
+        self._end = end
+
+    def name(self):
+        return self._name
+
+    def start_datetime(self):
+        return self._start
+
+    def end_datetime(self):
+        return self._end
+
+    def start_string_time(self):
+        return self._start.strftime('%H:%M')
+
+    def end_string_time(self):
+        return self._end.strftime('%H:%M')
+
+    def start_string_datetime(self):
+        return self._start.strftime('%Y-%m-%d %H:%M')
+
+    def end_string_datetime(self):
+        return self._end.strftime('%Y-%m-%d %H:%M')
+
+    def is_current(self):
+        return self._start > datetime.now()
+
+    def is_next(self):
+        return self._start > datetime.now() and self._end > datetime.now()
+
+    def when(self):
+        if self.is_current():
+            return 'current'
+        elif self.is_next():
+            return 'next'
+        else:
+            return False

@@ -1,33 +1,30 @@
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
+from src.axiscare.carer import carerVisit
 
-def getCarerNext(data):
+
+def getCarerDetails(data):
     #
     soup = BeautifulSoup(data)
     #
-    dt = datetime.now()
-    carers = parseDailyCarers(soup, dt)
-    carer = checkCarers(carers, dt)
+    carers_all = {}
     #
-    if not bool(carer):
-        dt = datetime.now() + timedelta(days=1)
+    for x in range(0,2):
+        dt = datetime.now() + timedelta(days=x)
         carers = parseDailyCarers(soup, dt)
-        carer = checkCarers(carers, dt)
-        #
-        if not bool(carer):
-            raise Exception
+        carers_all.update(carers)
     #
-    return carer
+    return carers_all
 
 
 def parseDailyCarers(soup, d):
     #
-    carers = []
+    carers = {}
     #
-    class_date = "calendar-day-{date}".format(date=d.strftime("%Y-%m-%d"))
+    class_filter = "calendar-day-{date}".format(date=d.strftime("%Y-%m-%d"))
+    dayitem = soup.findAll("td", {"class": class_filter})[0]
     #
-    dayitem = soup.findAll("td", {"class": class_date})[0]
     daydetails = dayitem.findAll("td", {"class": "calendar_event_cell"})[0]
     careritems = daydetails.findAll("table", {"class": "cal_item cal_item_visit visit_assigned"})
     #
@@ -40,11 +37,9 @@ def parseDailyCarers(soup, d):
         #
         cName = i.findAll("tr", {"class": "person caregiver assigned"})[0].contents[0].string
         #
-        c = {"name": cName,
-             "start": cStart,
-             "end": cEnd}
+        c = carerVisit(cName, cStart, cEnd)
         #
-        carers.append(c)
+        carers[c.start_string_datetime()] = c
         #
     return carers
 
@@ -52,12 +47,12 @@ def parseDailyCarers(soup, d):
 def checkCarers(carers, dt):
     #
     for c in carers:
-        if c['start']>dt:
+        if c['start']>datetime.now():
             return {'when': 'next',
                     'name': c['name'],
                     'start': c['start'],
                     'end': c['end']}
-        elif c['start']>dt and c['end']>dt:
+        elif c['start']>datetime.now() and c['end']>datetime.now():
             return {'when': 'current',
                     'name': c['name'],
                     'start': c['start'],
