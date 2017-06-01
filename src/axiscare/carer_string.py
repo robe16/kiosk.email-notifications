@@ -1,16 +1,20 @@
-from src.axiscare.cache import update_cache, get_cache
-
+from src.axiscare.cache import update_cache
+import src.cache as cache
 
 def carer_string():
     #
     try:
         #
-        carers_cache = get_cache()
+        carer = carerFind(cache.carers)
         #
-        carer = carerFind(carers_cache['carers'])
+        if not bool(carer):
+            update_cache()
+            carer = carerFind(cache.carers)
         #
         s = 'Your {when} carer is {name}'.format(when=carer.when(),
                                                  name=carer.name())
+        #
+        # s += ' {start}-{end}'.format(start=carer.start_string_time(), end=carer.end_string_time())
         #
         return s
         #
@@ -20,10 +24,8 @@ def carer_string():
 
 
 def carerFind(carerDetails):
-    for dt, carer in carerDetails:
-        if carer.is_current() or carer.is_next():
+    for key in sorted(carerDetails.keys()):
+        carer = carerDetails[key]
+        if carer.is_current() or carer.is_future():
             return carer
-
-
-update_cache()
-print(carer_string())
+    return False
