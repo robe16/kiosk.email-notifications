@@ -14,3 +14,7 @@ Yet to investigate and develop:
 - Weather (today/tomorrow/this afternoon/etc. ??)
 - Messages input into a Google Sheet with expiry date/time
 - Messages (and maybe images) emailed to dedicated mailbox from a safelist of senders (e.g. family members)
+
+<kbd>
+  <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/screenshots/screenshot_01.png">
+</kbd>
