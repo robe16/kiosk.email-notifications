@@ -6,7 +6,7 @@ from src.axiscare.carer import carerVisit
 
 def getCarerDetails(data):
     #
-    soup = BeautifulSoup(data)
+    soup = BeautifulSoup(data, "html.parser")
     #
     carers_all = {}
     #
