@@ -8,14 +8,14 @@ body {
 
 .carer {
     display: block;
-	font-size: 60px;
+	font-size: 50px;
     display: inline-block;
 }
 
 
 .messages {
     display: block;
-	font-size: 60px;
+	font-size: 50px;
     display: inline-block;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .datetime_dem {
-	font-size: 60px;
+	font-size: 50px;
     font-weight: bold;
     display: inline-block;
 }
@@ -53,50 +53,6 @@ body {
 }
 
 
-.btn-container-padding {
-    padding: 2px;
-}
-
-.btn-remote {
-    width: 100%;
-    /*height: 0;
-    padding-bottom: 100%;*/
-    cursor: pointer;
-    border-radius: 2px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-}
-.btn-remote .glyphicon {
-        padding: 10px 0px;
-}
-.btn-txt {
-    padding: 7px 12px;
-}
-@media (max-width: 700px) {
-    .btn-remote  .glyphicon {
-        font-size: 10px;
-        padding: 12px 0px;
-    }
-    .btn-txt {
-        font-size: 10px;
-        padding: 10px 0px;
-    }
-}
-
-
-.btn-remote {
-    z-index: 2;
-    -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-    -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-    box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-}
-.btn-remote:active {
-    z-index: 1;
-    -webkit-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.7);
-    -moz-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.7);
-    box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.7);
-}
 
 .material-shadow {
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
@@ -105,14 +61,15 @@ body {
 }
 
 
-.btn_pointer {
-    cursor: pointer;
+.day-progress {
+    width: 100%;
 }
 
-.grid_item:hover {
-    background-color: #d9d9d9;
-}
 
+.pin-bottom {
+    position: absolute;
+    bottom: 0;
+}
 
 
 .material-text-dark-primary {color: #000000; opacity: 0.87;}

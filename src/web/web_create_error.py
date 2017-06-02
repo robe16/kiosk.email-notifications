@@ -15,8 +15,6 @@ def create_error(code):
                 'desc': 'Unknown',
                 'mesg': 'An error has been encountered, please try again!!'}
     #
-    body = urlopen('html/error.html').read().encode('utf-8').format(**args)
-    #
     return urlopen('html/header.html').read().encode('utf-8').format(title=str(code)) + \
-           urlopen('html/body.html').read().encode('utf-8').format(header='', body=body) +\
+           urlopen('html/error.html').read().encode('utf-8').format(**args) +\
            urlopen('html/footer.html').read().encode('utf-8')

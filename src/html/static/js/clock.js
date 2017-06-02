@@ -45,7 +45,7 @@ function startClock_dem() {
 		//
 		var sDatetime = "Now it's ".concat(tday[nday], " ", sTime);
 		//
-		document.getElementById("date_dem").innerHTML = sDatetime;
+		document.getElementById("datetime_dem").innerHTML = sDatetime;
 		//
 	}
 
