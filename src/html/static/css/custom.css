@@ -54,17 +54,23 @@ body {
 
 
 
+.day-progress {
+    width: 100%;
+}
+.now_bar {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: #0000ff;
+}
+
+
+
 .material-shadow {
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
 }
-
-
-.day-progress {
-    width: 100%;
-}
-
 
 .pin-bottom {
     position: absolute;
