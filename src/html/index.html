@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-12">
             <script src="/web/static/js/clock.js"></script>
-            <script src="/web/static/js/onload.js"></script>
             <!--Not displayed but retained for use if required (not commented to ensure js still works if enabled.-->
             <div class="datetime" style="display: none;">
                 <div id="date" class="date material-text-dark-secondary"></div>
@@ -20,10 +19,12 @@
                 </div>
             </div>
             <!-- -->
-            <div class="carer">{carer_msg}</div>
+            <script src="/web/static/js/carer.js"></script>
+            <div id="msg-carer" class="carer"></div>
             <!-- -->
             <div class="messages">{messages}</div>
             <!-- -->
         </div>
     </div>
 </div>
+<script src="/web/static/js/onload.js"></script>

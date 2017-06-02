@@ -8,6 +8,8 @@ from src.config import cfg
 from src.web.web_create_error import create_error
 from src.web.web_create_home import create_home
 
+from src.axiscare.carer_string import carer_info
+
 
 ################################################################################################
 # Web UI
@@ -18,7 +20,19 @@ def web_home():
     return HTTPResponse(body=create_home(), status=200)
 
 ################################################################################################
-# Web UI
+# Resources
+################################################################################################
+
+@get('/carers/now-or-next')
+def web_carers():
+    data = carer_info()
+    if data:
+        return HTTPResponse(data, status=200)
+    else:
+        return HTTPResponse(status=400)
+
+################################################################################################
+# Static files
 ################################################################################################
 
 @get('/web/static/<folder>/<filename>')

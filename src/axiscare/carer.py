@@ -25,10 +25,13 @@ class carerVisit():
         return self._end.strftime('%H:%M')
 
     def start_string_datetime(self):
-        return self._start.strftime('%Y-%m-%d %H:%M')
+        return self._start.strftime('%Y-%m-%dT%H:%M')
 
     def end_string_datetime(self):
-        return self._end.strftime('%Y-%m-%d %H:%M')
+        return self._end.strftime('%Y-%m-%dT%H:%M')
+
+    def is_today(self):
+        return self._start.date() == datetime.now().date()
 
     def is_current(self):
         return self._start < datetime.now() and self._end > datetime.now()

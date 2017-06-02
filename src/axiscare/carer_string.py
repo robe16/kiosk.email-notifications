@@ -1,7 +1,7 @@
 from src.axiscare.cache import update_cache
 import src.cache as cache
 
-def carer_string():
+def carer_info():
     #
     try:
         #
@@ -11,16 +11,22 @@ def carer_string():
             update_cache()
             carer = carerFind(cache.carers)
         #
-        return carer.label()
+        carer_details = {"carer": {"label": carer.label(),
+                                   "name": carer.name(),
+                                   "start": carer.start_string_datetime(),
+                                   "end": carer.end_string_datetime()}
+                         }
+        #
+        return carer_details
         #
     except Exception as e:
         print('ERROR: {error}'.format(error=e))
         raise Exception
 
 
-def carerFind(carerDetails):
-    for key in sorted(carerDetails.keys()):
-        carer = carerDetails[key]
+def carerFind(carers_all):
+    for key in sorted(carers_all.keys()):
+        carer = carers_all[key]
         if carer.is_current() or carer.is_future():
             return carer
     return False

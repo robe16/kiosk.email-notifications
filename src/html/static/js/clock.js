@@ -50,6 +50,6 @@ function startClock_dem() {
 	}
 
 	createClock_dem();
-	setInterval(createClock_dem, 50000); //5mins
+	setInterval(createClock_dem, 300000); //5mins
 
 }
