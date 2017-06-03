@@ -127,7 +127,7 @@ function startDay() {
     createHourBars();
 
     updateNowBar();
-	setInterval(updateNowBar, 900000); //15min
+	setInterval(updateNowBar, 60000); //1min
 
 	updateDay();
 
