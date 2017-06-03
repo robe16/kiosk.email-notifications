@@ -8,7 +8,7 @@ from src.config import cfg
 from src.web.web_create_error import create_error
 from src.web.web_create_home import create_home
 
-from src.axiscare.carer_string import carer_info
+from src.axiscare.carer_info import carer_info, carers_today
 
 
 ################################################################################################
@@ -24,8 +24,22 @@ def web_home():
 ################################################################################################
 
 @get('/carers/now-or-next')
-def web_carers():
+def carers_nownext():
     data = carer_info()
+    if data:
+        return HTTPResponse(data, status=200)
+    else:
+        return HTTPResponse(status=400)
+
+@get('/info/today')
+def info_today():
+    #
+    data = {}
+    try:
+        data['carers'] = carers_today()
+    except:
+        pass
+    #
     if data:
         return HTTPResponse(data, status=200)
     else:
@@ -38,8 +52,6 @@ def web_carers():
 @get('/web/static/<folder>/<filename>')
 def get_resource(folder, filename):
     return static_file(filename, root=os.path.join(os.path.dirname(__file__),('html/static/{folder}'.format(folder=folder))))
-
-
 
 ################################################################################################
 # Image files

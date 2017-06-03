@@ -57,11 +57,40 @@ body {
 .day-progress {
     width: 100%;
 }
-.now_bar {
-    position: absolute;
+.bars {
     height: 100%;
+    width: 100%;
+}
+.bar {
+    background-color: #000000;
+    position: absolute;
+    bottom: 0;
     width: 2px;
+}
+.bar_hour {
+    height: 25%;
+    width: 1px;
+}
+.bar_now {
     background-color: #0000ff;
+    height: 100%;
+}
+.bar_midday {
+    height: 50%;
+    left: 50%;
+}
+
+.carer-block {
+    position: absolute;
+    background-color: #0000ff;
+    /*text-align: center;*/
+    height: 100%;
+}
+.carer-block > span {
+    display: inline-block;
+    position: absolute;
+    bottom: 50px;
+
 }
 
 

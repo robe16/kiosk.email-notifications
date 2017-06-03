@@ -8,33 +8,26 @@ function startDay() {
 	}
 
 
-    function updateDayAsync(dayStr) {
+    function updateDayAsync(dayinfoStr) {
 		//
 		// Parse string into JSON object
 		try {
-		    var dayJson = JSON.parse(dayStr);
+		    var dayinfoJson = JSON.parse(dayinfoStr);
 		} catch(err) {
-		    var dayJson = false;
+		    var dayinfoJson = false;
 		}
 		//
-		// Get label and update HTML
-		var label = ""
-		//
+		// Update HTML
 		try {
-            if (dayJson) {
-                label = dayJson.carer.label;
-                if (!label) {throw "error in response"}
+            if (dayinfoJson) {
+                updatePage(dayinfoJson);
             } else {
                 throw "null response";
             }
-        } catch(err) {
-            label = "I'm sorry, I don't know who your next carer will be. I'll try to find out again in a little while.";
-        }
-        //
-        updatePage(dayJson);
+        } catch(err) {}
         //
         // Set time for next update
-        var wait = 60000; //1min
+        var wait = 900000; //15min
         setTimeout(updateDay, wait);
         //
     }
@@ -42,25 +35,78 @@ function startDay() {
 
     function updatePage(info) {
         //
+        //carers
+        carers = info.carers
+        for (var x in carers) {
+            //
+            var c = carers[x];
+            //
+            var dtStart = new Date(c.start + "Z");
+            var dtEnd = new Date(c.end + "Z");
+            //
+            var leftStart = getTimePercent(dtStart);
+            var leftEnd = getTimePercent(dtEnd);
+            var width = leftEnd - leftStart;
+            //
+            var divCarer = document.createElement("div");
+            divCarer.className = "carer-block material-col-grey-300";
+            divCarer.style.left = leftStart.toString().concat("%");
+            divCarer.style.width = width.toString().concat("%");
+            //
+            var spanCarerName = document.createElement("span");
+            spanCarerName.innerHTML = c.name;
+            //
+            divCarer.appendChild(spanCarerName);
+            //
+            document.getElementById("day-contents").appendChild(divCarer);
+        }
+        //
+        return true
     }
 
 
     function updateNowBar() {
         //
+        var now = new Date();
+        var percentSeconds = getTimePercent(now);
+        //
+        var newStyle = percentSeconds.toString().concat("%");
+        //
+        document.getElementById("bar_now").style.left = newStyle;
+        //
+    }
+
+
+    function createHourBars() {
+        //
+        for (var i=1;i < 23; i++) {
+            if (i != 12) {
+                //
+                var percentSeconds = 100 * (i * 60 * 60)/(24 * 60 * 60);
+                //
+                var spanBar = document.createElement("span");
+                spanBar.className = "bar bar_hour";
+                spanBar.style.left = percentSeconds.toString().concat("%");
+                document.getElementById("bars").appendChild(spanBar);
+            }
+        }
+        //
+    }
+
+
+    function getTimePercent(dt) {
+        //
         var secondsInADay = 24 * 60 * 60;
         //
-        var now = new Date();
-        var hours = now.getHours() * 60 * 60;
-        var minutes = now.getMinutes() * 60;
-        var seconds = now.getSeconds();
+        var hours = dt.getHours() * 60 * 60;
+        var minutes = dt.getMinutes() * 60;
+        var seconds = dt.getSeconds();
         var totalSeconds = hours + minutes + seconds;
         //
         var percentSeconds = 100 * totalSeconds/secondsInADay;
         //
-        var newStyle = percentSeconds.toString().concat("%");
-        //
-        document.getElementById("now_bar").style.left = newStyle;
-        //
+        return percentSeconds;
+
     }
 
 
@@ -78,9 +124,11 @@ function startDay() {
         }
     }
 
+    createHourBars();
+
     updateNowBar();
 	setInterval(updateNowBar, 900000); //15min
 
-//	updateDay();
+	updateDay();
 
 }
