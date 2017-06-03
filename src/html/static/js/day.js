@@ -79,7 +79,7 @@ function startDay() {
 
     function createHourBars() {
         //
-        for (var i=1;i < 23; i++) {
+        for (var i=1;i < 24; i++) {
             if (i != 12) {
                 //
                 var percentSeconds = 100 * (i * 60 * 60)/(24 * 60 * 60);
