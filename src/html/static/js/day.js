@@ -35,6 +35,9 @@ function startDay() {
 
     function updatePage(info) {
         //
+        var divContainer = document.createElement("div");
+        divContainer.className = "carer-container";
+        //
         //carers
         carers = info.carers
         for (var x in carers) {
@@ -58,8 +61,10 @@ function startDay() {
             //
             divCarer.appendChild(spanCarerName);
             //
-            document.getElementById("day-contents").appendChild(divCarer);
+            divContainer.appendChild(divCarer)
         }
+        //
+        document.getElementById("day-contents").appendChild(divContainer);
         //
         return true
     }

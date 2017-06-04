@@ -9,7 +9,14 @@ from src.web.web_create_error import create_error
 from src.web.web_create_home import create_home
 
 from src.axiscare.carer_info import carer_info, carers_today
+from src.weather.weather import obj_weather
 
+
+################################################################################################
+# Create required objects
+################################################################################################
+
+weather = obj_weather()
 
 ################################################################################################
 # Web UI
@@ -37,8 +44,14 @@ def info_today():
     data = {}
     try:
         data['carers'] = carers_today()
-    except:
-        pass
+    except Exception as e:
+        print('ERROR: Failed to add carer data to response - {error}'.format(error=e))
+        data['carers'] = {}
+    try:
+        data['weather'] = weather.weather_today()
+    except Exception as e:
+        print('ERROR: Failed to add weather data to response - {error}'.format(error=e))
+        data['weather'] = {}
     #
     if data:
         return HTTPResponse(data, status=200)
