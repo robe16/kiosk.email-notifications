@@ -21,6 +21,8 @@ LOCATION_region = ''
 LOCATION_unitaryAuthArea = ''
 REGION_id = ''
 
+max_days = 2
+
 
 def getParam_unit(params, name):
     for param in params:
@@ -175,6 +177,9 @@ def createForecast(town):
         jsonForecast['days'][dy_count] = date_json
         #
         dy_count += 1
+        #
+        if dy_count == max_days:
+            break
     #
     return jsonForecast
 
