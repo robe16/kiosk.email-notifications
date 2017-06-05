@@ -35,17 +35,25 @@ function startDay() {
 
     function updatePage(info) {
         //
+        var divCarers = get_divCarers(info.carers);
+        //
+        document.getElementById("day-contents").appendChild(divCarers);
+        //
+        return true
+    }
+
+
+    function get_divCarers(carers) {
+        //
         var divContainer = document.createElement("div");
         divContainer.className = "carer-container";
         //
-        //carers
-        carers = info.carers
         for (var x in carers) {
             //
             var c = carers[x];
             //
-            var dtStart = new Date(c.start + "Z");
-            var dtEnd = new Date(c.end + "Z");
+            var dtStart = new Date(c.start);
+            var dtEnd = new Date(c.end);
             //
             var leftStart = getTimePercent(dtStart);
             var leftEnd = getTimePercent(dtEnd);
@@ -64,9 +72,8 @@ function startDay() {
             divContainer.appendChild(divCarer)
         }
         //
-        document.getElementById("day-contents").appendChild(divContainer);
+        return divContainer;
         //
-        return true
     }
 
 
