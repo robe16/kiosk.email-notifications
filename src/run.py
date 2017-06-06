@@ -62,7 +62,7 @@ def info_today():
 # Static files
 ################################################################################################
 
-@get('/web/static/<folder>/<filename>')
+@get('/static/<folder>/<filename>')
 def get_resource(folder, filename):
     return static_file(filename, root=os.path.join(os.path.dirname(__file__),('html/static/{folder}'.format(folder=folder))))
 

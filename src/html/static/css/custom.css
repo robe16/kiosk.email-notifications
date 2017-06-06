@@ -81,6 +81,17 @@ body {
 }
 
 
+.sunriseset-container {
+    width: 100%;
+    height: 100%;
+}
+.sunriseset-glyph {
+    position: absolute;
+    transform:translateX(-50%);
+    bottom: 5px;
+    font-size: 25px;
+}
+
 .carer-container {
     width: 100%;
     height: 100%;

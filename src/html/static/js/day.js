@@ -35,9 +35,13 @@ function startDay() {
 
     function updatePage(info) {
         //
+        document.getElementById("day-contents").innerHTML = '';
+        //
         var divCarers = get_divCarers(info.carers);
+        var divSunRiseSet = get_divSunRiseSet(info.weather);
         //
         document.getElementById("day-contents").appendChild(divCarers);
+        document.getElementById("day-contents").appendChild(divSunRiseSet);
         //
         return true
     }
@@ -64,13 +68,43 @@ function startDay() {
             divCarer.style.left = leftStart.toString().concat("%");
             divCarer.style.width = width.toString().concat("%");
             //
-            var spanCarerName = document.createElement("span");
-            spanCarerName.innerHTML = c.name;
-            //
-            divCarer.appendChild(spanCarerName);
+//            var spanCarerName = document.createElement("span");
+//            spanCarerName.innerHTML = c.name;
+//            //
+//            divCarer.appendChild(spanCarerName);
             //
             divContainer.appendChild(divCarer)
         }
+        //
+        return divContainer;
+        //
+    }
+
+
+    function get_divSunRiseSet(weather) {
+        //
+        var divContainer = document.createElement("div");
+        divContainer.className = "sunriseset-container";
+        //
+//        for (var x in weather.days) {
+            //
+            var d = weather.days['0'].sunRiseSet;
+            //
+            var dtRise = new Date(d.sunrise);
+            var leftRise = getTimePercent(dtRise);
+            var divSunRise = document.createElement("i");
+            divSunRise.className = "sunriseset-glyph weather_type_glyph_sun wi wi-sunrise";
+            divSunRise.style.left = leftRise.toString().concat("%");
+            divContainer.appendChild(divSunRise);
+            //
+            var dtSet = new Date(d.sunset);
+            var leftSet = getTimePercent(dtSet);
+            var divSunSet = document.createElement("i");
+            divSunSet.className = "sunriseset-glyph weather_type_glyph_sun wi wi-sunset";
+            divSunSet.style.left = leftSet.toString().concat("%");
+            divContainer.appendChild(divSunSet);
+            //
+//        }
         //
         return divContainer;
         //
