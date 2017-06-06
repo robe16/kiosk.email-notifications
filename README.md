@@ -18,3 +18,15 @@ Yet to investigate and develop:
 <kbd>
   <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/screenshots/screenshot_01.png">
 </kbd>
+
+<hr>
+
+<h3>Required python packages</h3>
+<p>The following python packages require installation on the target system:
+<br>
+bottle: <code>http://bottlepy.org/docs/dev/index.html</code>
+<br>
+requests: <code>http://docs.python-requests.org/en/master/</code>
+<br>
+Google API client: <code>https://pypi.python.org/pypi/google-api-python-client</code>
+</p>
