@@ -15,7 +15,7 @@ class obj_weather():
         self.updateData()
 
     def weather_today(self):
-        if not self.data_lastupdate.date() < datetime.now().date():
+        if not self.data_lastupdate.date() == datetime.now().date():
             self.updateData()
         #
         return self.data_cache

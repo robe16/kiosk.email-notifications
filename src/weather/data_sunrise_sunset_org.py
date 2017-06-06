@@ -1,4 +1,5 @@
 from src.weather.index_lists import *
+from src.log.console_messages import print_msg, print_error
 import datetime
 import requests
 
@@ -37,8 +38,10 @@ def getSunRiseSet(date, latitude, longitude):
     r = requests.get(url)
     #
     if r.status_code == requests.codes.ok:
+        print_msg('Sunset-Sunrise weather forecast data retrieved successfully for date {date}'.format(date=date))
         return r.json()
     else:
+        print_error('Could not retrieve Sunset-Sunrise data for date {date}'.format(date=date))
         return {'status': 'ERROR'}
 
 
