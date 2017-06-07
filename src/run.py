@@ -8,8 +8,11 @@ from src.config import cfg
 from src.web.web_create_error import create_error
 from src.web.web_create_home import create_home
 
+from src.log.console_messages import print_error
+
 from src.axiscare.carer_info import carer_info, carers_today
 from src.weather.weather import obj_weather
+from src.messages.message_info import messages_current
 
 
 ################################################################################################
@@ -26,27 +29,48 @@ weather = obj_weather()
 def web_home():
     return HTTPResponse(body=create_home(), status=200)
 
+
 ################################################################################################
 # Resources
 ################################################################################################
 
 @get('/carers/now-or-next')
-def carers_nownext():
-    data = carer_info()
-    if data:
-        return HTTPResponse(data, status=200)
-    else:
-        return HTTPResponse(status=400)
+def _carers_nownext():
+    try:
+        data = carer_info()
+        if data:
+            return HTTPResponse(data, status=200)
+        else:
+            return HTTPResponse(status=400)
+    except Exception as e:
+        print_error('Could not return current/next carer details to client - {error}'.format(error=e))
+        raise HTTPError(500)
+
+
+@get('/messages/current')
+def _messages_current():
+    try:
+        data = messages_current()
+        if data:
+            return HTTPResponse(data, status=200)
+        else:
+            return HTTPResponse(status=400)
+    except Exception as e:
+        print_error('Could not return messages to client - {error}'.format(error=e))
+        raise HTTPError(500)
+
 
 @get('/info/today')
-def info_today():
+def _info_today():
     #
     data = {}
+    #carers
     try:
         data['carers'] = carers_today()
     except Exception as e:
         print('ERROR: Failed to add carer data to response - {error}'.format(error=e))
         data['carers'] = {}
+    #weather
     try:
         data['weather'] = weather.weather_today()
     except Exception as e:
@@ -57,6 +81,7 @@ def info_today():
         return HTTPResponse(data, status=200)
     else:
         return HTTPResponse(status=400)
+
 
 ################################################################################################
 # Static files

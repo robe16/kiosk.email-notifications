@@ -10,13 +10,18 @@ body {
     display: block;
 	font-size: 50px;
     display: inline-block;
+    margin-bottom: 45px;
 }
 
 
 .messages {
     display: block;
-	font-size: 50px;
+	font-size: 30px;
     display: inline-block;
+    margin-bottom: 45px;
+}
+.msg {
+    margin-bottom: 30px;
 }
 
 
