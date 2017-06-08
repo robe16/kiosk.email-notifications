@@ -60,3 +60,12 @@ def get_gmail_message_mime(msg_id, user_id='me'):
         return mime_msg
     except Exception as e:
         return False
+
+
+def delete_gmail_message(msg_id, user_id='me'):
+    service = get_api_service()
+    #
+    try:
+        service.users().messages().delete(userId=user_id, id=msg_id).execute()
+    except Exception as e:
+        return False

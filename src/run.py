@@ -10,6 +10,7 @@ from src.web.web_create_home import create_home
 
 from src.log.console_messages import print_error
 
+from src.axiscare.url_process import start_url_updater
 from src.axiscare.carer_info import carer_info, carers_today
 from src.weather.weather import obj_weather
 from src.messages.message_info import messages_current
@@ -124,4 +125,5 @@ def error500(error):
 
 ################################################################################################
 
+start_url_updater()
 run(host='localhost', port=cfg.self_port, debug=True)

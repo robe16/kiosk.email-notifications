@@ -34,7 +34,16 @@ def get_url():
     return item['url']
 
 
-def add_history(url):
+def check_url(url):
+    data = read_json()
+    #
+    for u in data['urls']:
+        if data['urls'][u]['url'] == url:
+            return True
+    return False
+
+
+def put_url(url):
     data = read_json()
     #
     new_num = len(data['urls'])
