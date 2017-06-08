@@ -17,7 +17,7 @@ Yet to investigate and develop:
 - Messages (and maybe images) emailed to dedicated mailbox from a safelist of senders (e.g. family members)
 
 <kbd>
-  <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/screenshots/screenshot_01.png">
+  <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/images/screenshot_01.png">
 </kbd>
 
 <hr>
@@ -39,7 +39,7 @@ The advantage of Google Sheets for this is the ability to access the file via mo
 The following format should be adopted (note: conditional formatting is not essential and does not impact Python scripts). All data should be in ranges <code>A2:D</code> as row 1 is reserved for headers.
 
 <kbd>
-  <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/screenshots/googlesheet_messages_01.png">
+  <img src="https://github.com/robe16/kiosk.grandparent-message-board/blob/master/images/googlesheet_messages_01.png">
 </kbd>
 
 Within the <code>/src/config/cfg.py</code> module, change the variable <code>google_sheetId</code> to reflect the Google Sheet ID for the file created above. This can be extracted from the URL whilst accessing the file via a web browser.
