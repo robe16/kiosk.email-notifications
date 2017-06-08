@@ -44,7 +44,7 @@ The following format should be adopted (note: conditional formatting is not esse
 
 Within the <code>/src/config/cfg.py</code> module, change the variable <code>google_sheetId</code> to reflect the Google Sheet ID for the file created above. This can be extracted from the URL whilst accessing the file via a web browser.
 
-In order to utilise the 'countdown' functionality, use <code>{countdown}</code> within the body of the messages (column A) and input a valid date into the 'Countdown date' cell (column B). THe Python script will check if a countdown target date is present for the message, and if so, uses the <code>.format()</code> function to input the number of days to the countdown target date.
+In order to utilise the 'countdown' functionality, use <code>{countdown}</code> within the body of the messages (column A) and input a valid date into the 'Countdown date' cell (column B). The Python script will check if a countdown target date is present for the message, and if so, uses the <code>.format()</code> function to input the number of days to the countdown target date.
 
 <hr>
 
