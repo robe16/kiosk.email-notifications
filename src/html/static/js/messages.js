@@ -19,7 +19,6 @@ function startMessages() {
 		//
 		// Get label and update HTML
 		var divMsgs = document.createElement("div");
-		divMsgs.innerHTML = ""
 		//
 		try {
             if (msgJson) {
@@ -60,6 +59,7 @@ function startMessages() {
 
 
     function updateDiv(divMsgs) {
+        document.getElementById("messages").innerHTML = ""
         document.getElementById("messages").appendChild(divMsgs);
     }
 
