@@ -29,17 +29,18 @@ def get_emails(ids):
 def extract_url(eml):
     #
     for p in eml.get_payload():
-        for p2 in p.get_payload():
-            for h in p2._headers:
-                if h[0]== 'Content-Type' and h[1].startswith('text/html'):
-                    payload = p2.get_payload()
-                    soup = BeautifulSoup(payload, "html.parser")
-                    a_all = soup.findAll("a")
-                    for a in a_all:
-                        href = a.attrs['href'].replace('3D', '').replace('\"', '')
-                        if href.startswith('https://1000.axiscare.com'):
-                            #Assumption that html version appears before pdf version
-                            return href
+        if not isinstance(p.get_payload(), str):
+            for p2 in p.get_payload():
+                for h in p2._headers:
+                    if h[0]== 'Content-Type' and h[1].startswith('text/html'):
+                        payload = p2.get_payload()
+                        soup = BeautifulSoup(payload, "html.parser")
+                        a_all = soup.findAll("a")
+                        for a in a_all:
+                            href = a.attrs['href'].replace('3D', '').replace('\"', '')
+                            if href.startswith('https://1000.axiscare.com'):
+                                #Assumption that html version appears before pdf version
+                                return href
     #
     return False
 
