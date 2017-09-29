@@ -1,21 +1,30 @@
 import os
-from bottle import error, HTTPError
-from bottle import get
-from bottle import run, static_file, HTTPResponse
+import sys
+from bottle import error, HTTPError, get, run, static_file, HTTPResponse
 
-from src.config import cfg
+from config import cfg
 
-from src.web.web_create_error import create_error
-from src.web.web_create_home import create_home
+from web.web_create_error import create_error
+from web.web_create_home import create_home
 
-from src.log.console_messages import print_error
+from log.console_messages import print_error
 
-from src.axiscare.url_process import start_url_updater
-from src.axiscare.carer_info import carer_info, carers_today
-from src.weather.weather import obj_weather
-from src.messages.message_info import messages_current
+from axiscare.url_process import start_url_updater
+from axiscare.carer_info import carer_info, carers_today
+from weather.weather import obj_weather
+from messages.message_info import messages_current
 
 
+################################
+# Receive sys arguments
+################################
+# First argument passed through is the
+# port the application listens on
+try:
+    self_port = sys.argv[1]
+except:
+    self_port = 8080  # default port
+#
 ################################################################################################
 # Create required objects
 ################################################################################################
@@ -126,4 +135,4 @@ def error500(error):
 ################################################################################################
 
 start_url_updater()
-run(host='localhost', port=cfg.self_port, debug=True)
+run(host='localhost', port=self_port, debug=True)
