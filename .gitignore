@@ -1,3 +1,4 @@
+config.json
 email_creds.*
 email_safelist.*
 axiscare_urls.json
