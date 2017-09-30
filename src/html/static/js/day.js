@@ -64,7 +64,7 @@ function startDay() {
             var width = leftEnd - leftStart;
             //
             var divCarer = document.createElement("div");
-            divCarer.className = "carer-block material-col-grey-300";
+            divCarer.className = "carer-block material-col-grey-100";
             divCarer.style.left = leftStart.toString().concat("%");
             divCarer.style.width = width.toString().concat("%");
             //
