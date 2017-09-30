@@ -1,7 +1,6 @@
-from src.config.cfg import cfg_town
+from config.cfg import get_config_weather_town
 from data_metoffice import createForecast
 from data_sunrise_sunset_org import createSunriseSet
-import json
 from datetime import datetime
 
 
@@ -30,7 +29,7 @@ class obj_weather():
 
     def getForecast(self):
         #
-        forecast = createForecast(cfg_town)
+        forecast = createForecast(get_config_weather_town())
         #
         lat = forecast['location']['latitude']
         lng = forecast['location']['longitude']

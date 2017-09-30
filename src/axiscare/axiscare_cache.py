@@ -1,15 +1,15 @@
-from src.axiscare.data import getData
-from src.axiscare.parse import getCarerDetails
-from src.axiscare.url import get_url
+from axiscare.data import getData
+from axiscare.parse import getCarerDetails
+from config.cfg import get_config_axiscare_url
 
-import src.cache as cache
+import cache
 
 
 def update_cache():
     #
     try:
         #
-        url = get_url()
+        url = get_config_axiscare_url()
         #
         data = getData(url)
         #

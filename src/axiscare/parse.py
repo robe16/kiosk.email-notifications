@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
-from src.axiscare.carer import carerVisit
+from axiscare.carer import carerVisit
 
 
 def getCarerDetails(data):

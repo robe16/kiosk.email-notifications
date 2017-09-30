@@ -1,5 +1,5 @@
-from src.axiscare.cache import update_cache
-import src.cache as cache
+from axiscare.axiscare_cache import update_cache
+import cache
 
 def carer_info():
     #

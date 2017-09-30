@@ -1,6 +1,6 @@
-from src.config.cfg import metoffice_appkey
+from config.cfg import get_config_weather_metoffice_appkey
 from src.weather.index_lists import *
-from src.log.console_messages import print_msg, print_error
+from log.console_messages import print_msg, print_error
 import datetime
 import requests
 
@@ -197,9 +197,9 @@ def getForcast(frequency):
     # frequency = '3hourly' or 'daily'
     url = '{url}{uri}?res={frequency}&key={key}'.format(url=BASE_URL,
                                                         uri=URI_FORECAST_SITE.format(datatype='json',
-                                                                                          locationId=LOCATION_id),
+                                                                                     locationId=LOCATION_id),
                                                         frequency=frequency,
-                                                        key=metoffice_appkey)
+                                                        key=get_config_weather_metoffice_appkey())
     r = requests.get(url)
     #
     if r.status_code == requests.codes.ok:
@@ -234,7 +234,7 @@ def getLocation(town):
 def getLocations_list():
     url = '{url}{uri}?key={key}'.format(url=BASE_URL,
                                         uri=URI_LIST_SITE.format(datatype='json'),
-                                        key=metoffice_appkey)
+                                        key=get_config_weather_metoffice_appkey())
     r = requests.get(url)
     #
     if r.status_code == requests.codes.ok:
@@ -256,7 +256,7 @@ def getRegion():
 def getRegions_list():
     url = '{url}{uri}?key={key}'.format(url=BASE_URL,
                                         uri=URI_LIST_REGION.format(datatype='json'),
-                                        key=metoffice_appkey)
+                                        key=get_config_weather_metoffice_appkey())
     r = requests.get(url)
     #
     if r.status_code == requests.codes.ok:

@@ -2,8 +2,6 @@ import os
 import sys
 from bottle import error, HTTPError, get, run, static_file, HTTPResponse
 
-from config import cfg
-
 from web.web_create_error import create_error
 from web.web_create_home import create_home
 

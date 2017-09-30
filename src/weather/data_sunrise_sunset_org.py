@@ -1,5 +1,4 @@
-from src.weather.index_lists import *
-from src.log.console_messages import print_msg, print_error
+from log.console_messages import print_msg, print_error
 import datetime
 import requests
 

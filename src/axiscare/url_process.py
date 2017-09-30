@@ -2,9 +2,9 @@ from multiprocessing import Process
 from bs4 import BeautifulSoup
 import time
 
-from src.google.google_gmail import get_gmail_lists, get_gmail_message_mime, delete_gmail_message
-from src.axiscare.url import put_url, check_url
-from src.log.console_messages import print_msg, print_error
+from google.google_gmail import get_gmail_lists, get_gmail_message_mime, delete_gmail_message
+from config.cfg import put_config_axiscare_url
+from log.console_messages import print_msg, print_error
 
 
 def eml_list():
@@ -47,25 +47,21 @@ def extract_url(eml):
 
 def process_emls(emls):
     #
-    count = 0
-    #
     for e in emls:
         #
         url = extract_url(e['email'])
         #
         if url:
-            if not check_url(url):
-                put_url(url)
-                count += 1
-            #Delete email either way (i.e. new or repeat url)
+            put_config_axiscare_url(url)
+            #Delete email
             delete_gmail_message(e['id'])
-    #
-    return count
+            return True
+    return False
 
 
 def url_updater():
     #
-    count = 0
+    updatestatus = False
     #
     while True:
         #
@@ -79,8 +75,13 @@ def url_updater():
                 if len(eml_ids) > 0:
                     #
                     emls = get_emails(eml_ids)
-                    count = process_emls(emls)
-            print_msg('Axiscare URL updater process completed - {count} URL(s) updated'.format(count=count))
+                    updatestatus = process_emls(emls)
+            #
+            if updatestatus:
+                msg_success = 'the url stored in config.json has been updated'
+            else:
+                msg_success = 'no new urls recieved'
+            print_msg('Axiscare URL updater process completed - {msg_success}'.format(msg_success=msg_success))
             #
         except Exception as e:
             print_error('Could not process emails to check for new URL notification - {error}'.format(error=e))

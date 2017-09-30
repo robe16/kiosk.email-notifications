@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from src.google.google_sheet import get_data
-from src.log.console_messages import print_error
-from src.messages.message import messageDetails
-from src.config.cfg import google_sheetId, google_sheetRange
+from google.google_sheet import get_data
+from log.console_messages import print_error
+from messages.message import messageDetails
+from config.cfg import get_config_google_googlesheetId, get_config_google_googlesheetRange
 
 
 def messages_current():
@@ -17,7 +17,8 @@ def messages_current():
 def get_messages(all=False):
     # Default will only retrieve current messages
     #
-    values = get_data(google_sheetId, google_sheetRange)
+    values = get_data(get_config_google_googlesheetId(),
+                      get_config_google_googlesheetRange())
     #
     msgs = []
     #
