@@ -73,7 +73,7 @@ def get_config_weather_town():
 
 def get_config_google():
     data = get_cfg_json()
-    return data['notifications']
+    return data['google']
 
 
 def get_config_google_googlesheet():
