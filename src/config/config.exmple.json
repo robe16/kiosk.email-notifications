@@ -1,0 +1,24 @@
+// EXAMPLE FILE - TO BE UPDATED WITH PERSONAL DETAILS
+// THIS PYTHON FILE TO BE RENAMED TO 'creds.json' IN PRODUCTION
+{
+  "config": {
+    "general": {
+      "title": "Kiosk Notifications"
+    },
+    "weather": {
+      "metoffice_appkey": "12345678-9495-4a9b-8a15-abcdefghijkl",
+      "cfg_town": "Leeds"
+    },
+    "google": {
+      "google_sheet": {
+        "google_sheetId": "1xytDJt8A1234567890abcdefghi0eJ4EWbL7TvxYmo",
+        "google_sheetRange": "Messages!A2:D"
+      }
+    },
+    "axiscare": {
+      "url": "",
+      "dateReceived": ""
+    },
+    "email_safelist": ["email_one@server.com", "email_two@server.com"]
+  }
+}
