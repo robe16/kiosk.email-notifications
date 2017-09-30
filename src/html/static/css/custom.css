@@ -3,6 +3,8 @@ html {
 }
 body {
     font-family: Roboto;
+    color: white;
+    background: black;
 }
 
 
@@ -67,7 +69,7 @@ body {
     width: 100%;
 }
 .bar {
-    background-color: #000000;
+    background-color: #ffffff;
     position: absolute;
     bottom: 0;
     width: 2px;
