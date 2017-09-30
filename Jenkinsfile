@@ -17,10 +17,14 @@ node {
         string(defaultValue: '8080', description: 'Port number for python application running within container', name: 'portApplication')
         string(defaultValue: '8080', description: 'Port number to map portApplication to', name: 'portMapped')
         string(defaultValue: '~/config/message_board/config.json', description: 'Location of config json file on host device', name: 'fileConfig')
+        string(defaultValue: '~/config/message_board/google_client_secret.json', description: 'Location of Google Client Secret json file on host device', name: 'fileGoogleSecret')
+        string(defaultValue: '~/config/message_board/sheets.googleapis.com-python-messageboard.json', description: 'Location of Google Oauth json file on host device', name: 'fileGoogleOauth')
         //
         build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
         //
-        docker_volumes = ["-v ${params.fileConfig}:/message_board/config/config.json"].join(" ")
+        docker_volumes = ["-v ${params.fileConfig}:/message_board/config/config.json",
+                          "-v ${params.fileGoogleSecret}:/message_board/google/google_client_secret.json",
+                          "-v ${params.fileGoogleOauth}:/message_board/google/credentials/google_client_secret.json"].join(" ")
         //
         deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
         //
