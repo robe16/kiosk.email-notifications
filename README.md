@@ -48,6 +48,10 @@ In order to utilise the 'countdown' functionality, use <code>{countdown}</code> 
 
 <hr>
 
+In order to open Chromium in kiosk mode at system startup, the file <code>/home/pi/.config/lxsession/LXDE-pi/autostart</code> will require </code>@/usr/bin/chromium-browser --kiosk --disable-restore-session-state www.domain.com</code> to be added.
+
+<hr>
+
 <h3>Required python packages</h3>
 <p>The following python packages require installation on the target system:
 <br>
