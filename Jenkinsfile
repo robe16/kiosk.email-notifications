@@ -16,7 +16,7 @@ node {
         string(defaultValue: 'message_board', description: 'Name of application for Docker image and container', name: 'appName')
         string(defaultValue: '8080', description: 'Port number for python application running within container', name: 'portApplication')
         string(defaultValue: '8080', description: 'Port number to map portApplication to', name: 'portMapped')
-        string(defaultValue: '~/logs/kiosk.log', description: 'Location of log file on host device', name: 'fileLog')
+        string(defaultValue: '~/logs/kiosk_server.log', description: 'Location of log file on host device', name: 'fileLog')
         string(defaultValue: '~/config/message_board/config.json', description: 'Location of config json file on host device', name: 'fileConfig')
         string(defaultValue: '~/config/message_board/google_client_secret.json', description: 'Location of Google Client Secret json file on host device', name: 'fileGoogleSecret')
         string(defaultValue: '~/config/message_board/sheets.googleapis.com-python-messageboard.json', description: 'Location of Google Oauth json file on host device', name: 'fileGoogleOauth')
