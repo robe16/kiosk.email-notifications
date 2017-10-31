@@ -1,6 +1,6 @@
 from config.cfg import get_config_weather_metoffice_appkey
 from src.weather.index_lists import *
-from log.console_messages import print_msg, print_error
+from log.log import log_general, log_error
 import datetime
 import requests
 
@@ -203,10 +203,10 @@ def getForcast(frequency):
     r = requests.get(url)
     #
     if r.status_code == requests.codes.ok:
-        print_msg('Met Office weather forecast data retrieved successfully for frequency {frequency}'.format(frequency=frequency))
+        log_general('Met Office weather forecast data retrieved successfully for frequency {frequency}'.format(frequency=frequency))
         return r.json()
     else:
-        print_error('Could not retrieve Met Office weather forecast for frequency {frequency}'.format(frequency=frequency))
+        log_error('Could not retrieve Met Office weather forecast for frequency {frequency}'.format(frequency=frequency))
         return False
 
 

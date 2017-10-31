@@ -5,13 +5,17 @@ from bottle import error, HTTPError, get, run, static_file, HTTPResponse
 from web.web_create_error import create_error
 from web.web_create_home import create_home
 
-from log.console_messages import print_error
+from log.log import log_general, log_error
 
 from axiscare.url_process import start_url_updater
 from axiscare.carer_info import carer_info, carers_today
 from weather.weather import obj_weather
 from messages.message_info import messages_current
 
+################################################################################################
+
+log_general('****************************************************************')
+log_general('Operation started')
 
 ################################
 # Receive sys arguments
@@ -22,6 +26,8 @@ try:
     self_port = sys.argv[1]
 except:
     self_port = 8080  # default port
+#
+host = 'localhost'
 #
 ################################################################################################
 # Create required objects
@@ -51,7 +57,7 @@ def _carers_nownext():
         else:
             return HTTPResponse(status=400)
     except Exception as e:
-        print_error('Could not return current/next carer details to client - {error}'.format(error=e))
+        log_error('Could not return current/next carer details to client')
         raise HTTPError(500)
 
 
@@ -64,7 +70,7 @@ def _messages_current():
         else:
             return HTTPResponse(status=400)
     except Exception as e:
-        print_error('Could not return messages to client - {error}'.format(error=e))
+        log_error('Could not return messages to client - {error}'.format(error=e))
         raise HTTPError(500)
 
 
@@ -76,13 +82,13 @@ def _info_today():
     try:
         data['carers'] = carers_today()
     except Exception as e:
-        print('ERROR: Failed to add carer data to response - {error}'.format(error=e))
+        log_error('Failed to add carer data to response - {error}'.format(error=e))
         data['carers'] = {}
     #weather
     try:
         data['weather'] = weather.weather_today()
     except Exception as e:
-        print('ERROR: Failed to add weather data to response - {error}'.format(error=e))
+        log_error('Failed to add weather data to response - {error}'.format(error=e))
         data['weather'] = {}
     #
     if data:
@@ -132,5 +138,7 @@ def error500(error):
 
 ################################################################################################
 
+log_general('Listening on http://{host}:{port}'.format(host=host, port=self_port))
+
 start_url_updater()
-run(host='localhost', port=self_port, debug=True)
+run(host=host, port=self_port, debug=True)

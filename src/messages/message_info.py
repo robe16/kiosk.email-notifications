@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from google.google_sheet import get_data
-from log.console_messages import print_error
+from log.log import log_error
 from messages.message import messageDetails
 from config.cfg import get_config_google_googlesheetId, get_config_google_googlesheetRange
 
@@ -23,7 +23,7 @@ def get_messages(all=False):
     msgs = []
     #
     if not values:
-        print_error('Problem encountered when processing messages from Google Sheet - No data found')
+        log_error('Problem encountered when processing messages from Google Sheet - No data found')
     else:
         for row in values:
             try:
@@ -41,5 +41,5 @@ def get_messages(all=False):
                     msgs.append(msgObj)
                 #
             except Exception as e:
-                print_error('Problem encountered when processing message from Google Sheet - {error}'.format(error=e))
+                log_error('Problem encountered when processing message from Google Sheet - {error}'.format(error=e))
         return msgs

@@ -1,4 +1,5 @@
 from axiscare.axiscare_cache import update_cache
+from log.log import log_error
 import cache
 
 def carer_info():
@@ -11,6 +12,9 @@ def carer_info():
             update_cache()
             carer = carerFind_nownext(cache.carers)
         #
+        if not bool(carer):
+            raise Exception('No details of carers held in cache')
+        #
         carer_details = {"carer": {"label": carer.label(),
                                    "name": carer.name(),
                                    "start": carer.start_string_datetime(),
@@ -20,7 +24,7 @@ def carer_info():
         return carer_details
         #
     except Exception as e:
-        print('ERROR: {error}'.format(error=e))
+        log_error('Error gathering and returning current/next carer details - {error}'.format(error=e))
         raise Exception
 
 
@@ -45,7 +49,7 @@ def carers_today():
         return c_list
         #
     except Exception as e:
-        print('ERROR: {error}'.format(error=e))
+        log_error('Error getting today\'s carers - {error}'.format(error=e))
         raise Exception
 
 

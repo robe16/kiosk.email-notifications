@@ -1,6 +1,8 @@
 from config.cfg import get_config_weather_town
 from data_metoffice import createForecast
 from data_sunrise_sunset_org import createSunriseSet
+from log.log import log_error
+
 from datetime import datetime
 
 
@@ -24,7 +26,7 @@ class obj_weather():
             self.data_cache = self.getForecast()
             self.data_lastupdate = datetime.now()
         except Exception as e:
-            print('ERROR: Failed to return requested weather data - {error}'.format(error=e))
+            log_error('Failed to return requested weather data - {error}'.format(error=e))
             return False
 
     def getForecast(self):

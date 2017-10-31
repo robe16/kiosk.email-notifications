@@ -1,5 +1,6 @@
 import requests as requests
 
+
 def getData(url):
     #
     r = requests.get(url)

@@ -4,7 +4,7 @@ import time
 
 from google.google_gmail import get_gmail_lists, get_gmail_message_mime, delete_gmail_message
 from config.cfg import put_config_axiscare_url
-from log.console_messages import print_msg, print_error
+from log.log import log_general, log_error
 
 
 def eml_list():
@@ -80,11 +80,11 @@ def url_updater():
             if updatestatus:
                 msg_success = 'the url stored in config.json has been updated'
             else:
-                msg_success = 'no new urls recieved'
-            print_msg('Axiscare URL updater process completed - {msg_success}'.format(msg_success=msg_success))
+                msg_success = 'no new urls received'
+            log_general('Axiscare URL updater process completed - {msg_success}'.format(msg_success=msg_success))
             #
         except Exception as e:
-            print_error('Could not process emails to check for new URL notification - {error}'.format(error=e))
+            log_error('Could not process emails to check for new URL notification - {error}'.format(error=e))
         #
         time.sleep(300) #5mins
 
@@ -92,5 +92,5 @@ def url_updater():
 def start_url_updater():
     process_urlupdater = Process(target=url_updater)
     process_urlupdater.start()
-    print_msg('Axiscare URL updater process started')
+    log_general('Axiscare URL updater process started')
 

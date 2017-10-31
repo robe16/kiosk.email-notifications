@@ -44,15 +44,15 @@ def parseDailyCarers(soup, d):
     return carers
 
 
-def checkCarers(carers, dt):
+def checkCarers(carers):
     #
     for c in carers:
-        if c['start']>datetime.now():
+        if c['start'] > datetime.now():
             return {'when': 'next',
                     'name': c['name'],
                     'start': c['start'],
                     'end': c['end']}
-        elif c['start']>datetime.now() and c['end']>datetime.now():
+        elif c['start'] > datetime.now() and c['end'] > datetime.now():
             return {'when': 'current',
                     'name': c['name'],
                     'start': c['start'],

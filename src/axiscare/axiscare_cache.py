@@ -1,7 +1,7 @@
 from axiscare.data import getData
 from axiscare.parse import getCarerDetails
 from config.cfg import get_config_axiscare_url
-
+from log.log import log_error
 import cache
 
 
@@ -11,10 +11,14 @@ def update_cache():
         #
         url = get_config_axiscare_url()
         #
-        data = getData(url)
-        #
-        cache.carers = getCarerDetails(data)
+        if not url == '':
+            data = getData(url)
+            #
+            cache.carers = getCarerDetails(data)
+            #
+        else:
+            cache.carers = {}
         #
     except Exception as e:
-        print('ERROR: {error}'.format(error=e))
+        log_error('Error when updating Axiscare cache data - {error}'.format(error=e))
         raise Exception
