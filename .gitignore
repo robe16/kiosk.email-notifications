@@ -6,6 +6,8 @@ axiscare_cache.json
 google_client_secret.json
 sheets.googleapis.com-python-messageboard.json
 
+*.log
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
