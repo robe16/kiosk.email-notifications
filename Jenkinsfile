@@ -46,7 +46,7 @@ node {
 
         stage("build") {
             try {sh "docker image rm ${docker_img_name_latest}"} catch (error) {}
-            sh "docker build -t ${docker_img_name_commit} ."
+            sh "docker build -t ${docker_img_name_commit} ${build_args} ."
             sh "docker tag ${docker_img_name_commit} ${docker_img_name_latest}"
         }
 
