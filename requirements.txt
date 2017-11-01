@@ -1,3 +1,4 @@
 requests
+beautifulsoup4
 bottle
 google-api-python-client
