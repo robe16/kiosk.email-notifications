@@ -3,4 +3,11 @@ window.onload=function() {
     startCarer();
     startMessages();
     startDay();
+
+    setTimeout(function () {
+            if (newState == -1) {
+                location.reload(true);
+            }
+        }, 1800000); //30 minutes
+
 }
