@@ -27,7 +27,7 @@ try:
 except:
     self_port = 8080  # default port
 #
-host = 'localhost'
+host = '0.0.0.0'
 #
 ################################################################################################
 # Create required objects
