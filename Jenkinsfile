@@ -23,7 +23,7 @@ node {
         //
         build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
         //
-        docker_volumes = ["-v ${params.fileLog}:/log/kiosk_server.log",
+        docker_volumes = ["-v ${params.fileLog}:/message_board/log/kiosk_server.log",
                           "-v ${params.fileConfig}:/message_board/config/config.json",
                           "-v ${params.fileGoogleSecret}:/message_board/google/google_client_secret.json",
                           "-v ${params.fileGoogleOauth}:/message_board/google/credentials/google_client_secret.json"].join(" ")
