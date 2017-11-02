@@ -6,7 +6,7 @@ import email
 import httplib2
 from apiclient import discovery
 
-from src.google.google_credentials import get_credentials
+from google.google_credentials import get_credentials
 
 
 def get_api_service():
