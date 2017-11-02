@@ -1,5 +1,5 @@
 from config.cfg import get_config_weather_metoffice_appkey
-from src.weather.index_lists import *
+from weather.index_lists import *
 from log.log import log_general, log_error
 import datetime
 import requests
