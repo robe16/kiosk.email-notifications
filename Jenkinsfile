@@ -26,7 +26,7 @@ node {
         docker_volumes = ["-v ${params.fileLog}:/message_board/log/kiosk_server.log",
                           "-v ${params.fileConfig}:/message_board/config/config.json",
                           "-v ${params.fileGoogleSecret}:/message_board/google/google_client_secret.json",
-                          "-v ${params.fileGoogleOauth}:/message_board/google/credentials/google_client_secret.json"].join(" ")
+                          "-v ${params.fileGoogleOauth}:/message_board/google/credentials/sheets.googleapis.com-python-messageboard.json"].join(" ")
         //
         deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
         //
