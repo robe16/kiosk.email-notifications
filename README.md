@@ -48,7 +48,7 @@ In order to utilise the 'countdown' functionality, use <code>{countdown}</code> 
 
 <hr>
 
-In order to open Chromium in kiosk mode at system startup, the file <code>/home/pi/.config/lxsession/LXDE-pi/autostart</code> will require <code>@/usr/bin/chromium-browser --kiosk --disable-restore-session-state localhost:8080</code> to be added.
+In order to open Chromium in kiosk mode at system startup, the file <code>/home/pi/.config/lxsession/LXDE-pi/autostart</code> will require <code>@/usr/bin/chromium-browser --kiosk --disable-session-crashed-bubble --disable-restore-session-state http://localhost:8080</code> to be added.
 
 <hr>
 
